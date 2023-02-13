@@ -1,0 +1,51 @@
+{% extends 'Home.html' %}
+{% block content %}
+    <div>
+        <UL class="breadcrumb">
+            <LI class="breadcrumb-item"><A href="{% url 'home' %}">Home</A></LI>
+            <LI class="breadcrumb-item active">Register</LI>
+        </UL>
+    </div>
+    <div>
+        {% for i in messages %}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <h6>{{ i }}</h6>
+            <button class="btn-close" data-bs-dismiss="alert"></button>
+        </div>  
+        {% endfor %}
+    </div>
+    <form action="/login/register/" method="POST">
+        {% csrf_token %}
+        <div>
+            <table name="registrationform" class="m-5 table table-hover table-dark" style="width: 700px">
+                <tr>
+                    <th>First Name</th>
+                    <td><input style="width: 100%" type="text" name="firstname" placeholder="First Name">
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td><input style="width: 100%" type="text" name="lastname" placeholder="Last Name">
+                </tr>
+                <tr>
+                    <th>User Name</th>
+                    <td><input style="width: 100%" type="text" name="username" placeholder="Username">
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input style="width: 100%" type="email" name="email" placeholder="Email">
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td><input style="width: 100%" type="password" name="password1" placeholder="Password">
+                </tr>
+                <tr>
+                    <th>Confirm Password</th>
+                    <td><input style="width: 100%" type="password" name="password2" placeholder="Confirm Password">
+                </tr>
+                <tr>
+                    <td colspan="2"><center><input class="m-2 p-2 d-grid gap-2 col-4 btn btn-primary mx bg-primary text-white rounded" type="submit" name="submit" value="Register"></center></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+{% endblock content %}
